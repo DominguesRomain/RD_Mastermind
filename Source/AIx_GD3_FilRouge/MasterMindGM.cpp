@@ -35,7 +35,7 @@ FLinearColor AMasterMindGM::GetColor(uint8 ColorNumber)
 	return FLinearColor::Black;
 	
 }
-
+	void OnSolutionChecked();
 
 void AMasterMindGM::CreateSolution()
 {

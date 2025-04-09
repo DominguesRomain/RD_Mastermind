@@ -37,4 +37,5 @@ public:
 	void CreateSolution();
 	UFUNCTION(BlueprintCallable)
 	bool CheckAnswer(TArray<uint8> Answer);
+	
 };
