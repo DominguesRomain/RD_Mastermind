@@ -30,7 +30,7 @@ void AMastermindBoard::BeginPlay()
         return;
     }
 
-    // Crée les lignes de jeu
+    // Crï¿½e les lignes de jeu
     for (int i = 0; i < RowCount; i++)
     {
         FVector Location = GetActorLocation() + FVector(0, 0, -i * RowSpacing);
@@ -44,7 +44,7 @@ void AMastermindBoard::BeginPlay()
             NewRow->Manager = Manager;
             Rows.Add(NewRow);
 
-            // Désactive les interactions sauf pour la première ligne
+            // Dï¿½sactive les interactions sauf pour la premiï¿½re ligne
             for (AActor* SphereActor : NewRow->PlayerSpheres)
             {
                 UMastermindSphere* Sphere = SphereActor->FindComponentByClass<UMastermindSphere>();
@@ -73,7 +73,7 @@ void AMastermindBoard::Tick(float DeltaTime)
 
 void AMastermindBoard::HandleSolutionChecked(int32 Correct, int32 Misplaced)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Résultat: %d bien placés, %d mal placés"), Correct, Misplaced);
+    UE_LOG(LogTemp, Warning, TEXT("Ceci est une chaÃ®ne\nbien formÃ©e."));
 }
 
 void AMastermindBoard::OnRowSubmitted(uint8 GoodPlaces, uint8 WrongPlaces)
@@ -82,7 +82,7 @@ void AMastermindBoard::OnRowSubmitted(uint8 GoodPlaces, uint8 WrongPlaces)
 
     if (CurrentRowIndex < Rows.Num())
     {
-        // Bloque la ligne précédente
+        // Bloque la ligne prï¿½cï¿½dente
         for (AActor* SphereActor : Rows[CurrentRowIndex]->PlayerSpheres)
         {
             UMastermindSphere* Sphere = SphereActor->FindComponentByClass<UMastermindSphere>();
@@ -94,7 +94,7 @@ void AMastermindBoard::OnRowSubmitted(uint8 GoodPlaces, uint8 WrongPlaces)
 
         CurrentRowIndex++;
 
-        // Débloque la ligne suivante
+        // Dï¿½bloque la ligne suivante
         if (CurrentRowIndex < Rows.Num())
         {
             for (AActor* SphereActor : Rows[CurrentRowIndex]->PlayerSpheres)
