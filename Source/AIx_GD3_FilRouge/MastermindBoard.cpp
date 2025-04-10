@@ -33,7 +33,7 @@ void AMastermindBoard::BeginPlay()
     // Cr�e les lignes de jeu
     for (int i = 0; i < RowCount; i++)
     {
-        FVector Location = GetActorLocation() + FVector(0, 0, -i * RowSpacing);
+        FVector Location = GetActorLocation() + FVector(+i* RowSpacing, 0, 0);
         FRotator Rotation = GetActorRotation();
         FActorSpawnParameters SpawnParams;
         SpawnParams.Owner = this;

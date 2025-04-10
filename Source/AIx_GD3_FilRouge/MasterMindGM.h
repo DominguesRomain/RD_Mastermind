@@ -4,7 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "MasterMindGM.generated.h"
 
-// Déclaration du delegate BlueprintAssignable avec 2 paramètres : bons emplacements et mauvais emplacements
+// Dï¿½claration du delegate BlueprintAssignable avec 2 paramï¿½tres : bons emplacements et mauvais emplacements
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSolutionCheckedDelegate, int32, GoodPlaces, int32, WrongPlaces);
 
 UCLASS()
@@ -17,32 +17,32 @@ public:
 	AMasterMindGM();
 
 protected:
-	// Fonction appelée au début du jeu
+	// Fonction appelï¿½e au dï¿½but du jeu
 	virtual void BeginPlay() override;
 
 private:
-	// Solution secrète (liste de 4 entiers entre 0 et 5)
+	// Solution secrï¿½te (liste de 4 entiers entre 0 et 5)
 	UPROPERTY()
 	TArray<int32> Solution;
 
 public:
-	// Delegate appelé après vérification
+	// Delegate appelï¿½ aprï¿½s vï¿½rification
 	UPROPERTY(BlueprintAssignable)
 	FOnSolutionCheckedDelegate OnSolutionChecked;
 
-	// Génère une nouvelle solution aléatoire
+	// Gï¿½nï¿½re une nouvelle solution alï¿½atoire
 	UFUNCTION(BlueprintCallable)
 	void GenerateSolution();
 
-	// Vérifie une proposition du joueur
+	// Vï¿½rifie une proposition du joueur
 	UFUNCTION(BlueprintCallable)
 	void CheckSolution(const TArray<int32>& PlayerProposal);
-
-	// Retourne une couleur à partir d'un numéro (0 à 5)
+	
+	// Retourne une couleur ï¿½ partir d'un numï¿½ro (0 ï¿½ 5)
 	UFUNCTION(BlueprintCallable)
 	FLinearColor GetColor(int32 ColorIndex) const;
 
-	// Fonction pour ajouter une nouvelle ligne de sphères
+	// Fonction pour ajouter une nouvelle ligne de sphï¿½res
 	UFUNCTION(BlueprintCallable)
 	void AddNewRow();
 };

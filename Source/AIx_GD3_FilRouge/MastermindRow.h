@@ -34,4 +34,17 @@ public:
 	// Fonction pour ajouter une nouvelle ligne
 	UFUNCTION(BlueprintCallable)
 	void AddNewRow();
+
+	// Références vers les composants qui représentent les sphères dans le BP
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Spheres")
+	UStaticMeshComponent* Sphere1;
+    
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Spheres")
+	UStaticMeshComponent* Sphere2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Spheres")
+	UStaticMeshComponent* Sphere3;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Spheres")
+	UStaticMeshComponent* Sphere4;
 };

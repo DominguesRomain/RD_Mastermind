@@ -1,6 +1,7 @@
 #include "MasterMindGM.h"
 #include "MastermindRow.h"
 #include "Engine/World.h"
+#include "MastermindSphere.h" 
 
 // Constructeur
 AMasterMindGM::AMasterMindGM()
@@ -9,13 +10,13 @@ AMasterMindGM::AMasterMindGM()
 	GenerateSolution();
 }
 
-// Appelé au début du jeu
+// Appelï¿½ au dï¿½but du jeu
 void AMasterMindGM::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-// Génère une nouvelle solution aléatoire
+// Gï¿½nï¿½re une nouvelle solution alï¿½atoire
 void AMasterMindGM::GenerateSolution()
 {
 	Solution.Empty();
@@ -25,7 +26,7 @@ void AMasterMindGM::GenerateSolution()
 	}
 }
 
-// Vérifie une proposition du joueur
+// Vï¿½rifie une proposition du joueur
 void AMasterMindGM::CheckSolution(const TArray<int32>& PlayerProposal)
 {
 	int32 GoodPlaces = 0;
@@ -44,17 +45,17 @@ void AMasterMindGM::CheckSolution(const TArray<int32>& PlayerProposal)
 		}
 	}
 
-	// Déclenchement du delegate pour notifier de la vérification
+	// Dï¿½clenchement du delegate pour notifier de la vï¿½rification
 	OnSolutionChecked.Broadcast(GoodPlaces, WrongPlaces);
 
 	// Ajouter une nouvelle ligne si la proposition est incorrecte
-	if (GoodPlaces != 4)  // Supposons que la solution a 4 éléments
+	if (GoodPlaces != 4)  // Supposons que la solution a 4 ï¿½lï¿½ments
 	{
 		AddNewRow();
 	}
 }
 
-// Retourne une couleur à partir d'un numéro (0 à 5)
+// Retourne une couleur ï¿½ partir d'un numï¿½ro (0 ï¿½ 5)
 FLinearColor AMasterMindGM::GetColor(int32 ColorIndex) const
 {
 	switch (ColorIndex)
@@ -69,14 +70,14 @@ FLinearColor AMasterMindGM::GetColor(int32 ColorIndex) const
 	}
 }
 
-// Fonction pour ajouter une nouvelle ligne de sphères
+// Fonction pour ajouter une nouvelle ligne de sphï¿½res
 void AMasterMindGM::AddNewRow()
 {
-	// Spawning d'une nouvelle ligne de sphères
-	FVector SpawnLocation = FVector(0, 0, 100);  // Légèrement déplacé
+	// Spawning d'une nouvelle ligne de sphï¿½res
+	FVector SpawnLocation = FVector(120, 0, 0); 
 	AMastermindRow* NewRow = GetWorld()->SpawnActor<AMastermindRow>(AMastermindRow::StaticClass(), SpawnLocation, FRotator::ZeroRotator);
 
-	// Lier le Manager à la nouvelle ligne
+	// Lier le Manager ï¿½ la nouvelle ligne
 	if (NewRow)
 	{
 		NewRow->Manager = this;
