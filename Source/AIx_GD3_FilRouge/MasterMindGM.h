@@ -1,41 +1,48 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MasterMindGM.generated.h"
 
+// Déclaration du delegate BlueprintAssignable avec 2 paramètres : bons emplacements et mauvais emplacements
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSolutionCheckedDelegate, int32, GoodPlaces, int32, WrongPlaces);
 
 UCLASS()
 class AIX_GD3_FILROUGE_API AMasterMindGM : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
+	// Constructeur
 	AMasterMindGM();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category="Settings")
-	TArray<FLinearColor> Colors {FLinearColor::Red,FLinearColor::Yellow,FLinearColor::Green,FLinearColor::Blue,FLinearColor::Gray,FLinearColor::White};
-
-	UPROPERTY(EditAnywhere)
-	TArray<uint8> Solution;
-	
 protected:
-	// Called when the game starts or when spawned
+	// Fonction appelée au début du jeu
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+private:
+	// Solution secrète (liste de 4 entiers entre 0 et 5)
+	UPROPERTY()
+	TArray<int32> Solution;
 
-	UFUNCTION()
-	FLinearColor GetColor(uint8 ColorNumber);
-	
-	UFUNCTION()
-	void CreateSolution();
+public:
+	// Delegate appelé après vérification
+	UPROPERTY(BlueprintAssignable)
+	FOnSolutionCheckedDelegate OnSolutionChecked;
+
+	// Génère une nouvelle solution aléatoire
 	UFUNCTION(BlueprintCallable)
-	bool CheckAnswer(TArray<uint8> Answer);
-	
+	void GenerateSolution();
+
+	// Vérifie une proposition du joueur
+	UFUNCTION(BlueprintCallable)
+	void CheckSolution(const TArray<int32>& PlayerProposal);
+
+	// Retourne une couleur à partir d'un numéro (0 à 5)
+	UFUNCTION(BlueprintCallable)
+	FLinearColor GetColor(int32 ColorIndex) const;
+
+	// Fonction pour ajouter une nouvelle ligne de sphères
+	UFUNCTION(BlueprintCallable)
+	void AddNewRow();
 };

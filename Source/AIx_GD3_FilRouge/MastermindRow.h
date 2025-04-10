@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,29 +9,29 @@ UCLASS()
 class AIX_GD3_FILROUGE_API AMastermindRow : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AMastermindRow();
 
-    UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AMasterMindGM* Manager;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<UStaticMeshComponent*> AnswerSpheres;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActor*> PlayerSpheres;
-	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
+	// Fonction pour ajouter une nouvelle ligne
 	UFUNCTION(BlueprintCallable)
-	void Clicked();
+	void AddNewRow();
 };

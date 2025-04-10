@@ -1,40 +1,34 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "MastermindRow.h"
-
-#include "MastermindSphere.h"
+#include "Components/StaticMeshComponent.h"
+#include "Engine/World.h"
 
 // Sets default values
 AMastermindRow::AMastermindRow()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Enable tick for this actor
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
 void AMastermindRow::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
-// Called every frame
 void AMastermindRow::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void AMastermindRow::Clicked()
+// Fonction pour ajouter une nouvelle ligne de sphères
+void AMastermindRow::AddNewRow()
 {
-	TArray<uint8> Answer;
-	Answer.SetNum(4);
-	for(int i = 0; i < 4; i++)
-	{
-		Answer[i] = PlayerSpheres[i]->GetComponentByClass<UMastermindSphere>()->GetSphereColor();
-	}
-	Manager->CheckAnswer(Answer);
-}
+	// Définir la position de spawn
+	FVector SpawnLocation = GetActorLocation() + FVector(0, 0, 100);  // Déplacer légèrement vers le haut
+	AMastermindRow* NewRow = GetWorld()->SpawnActor<AMastermindRow>(AMastermindRow::StaticClass(), SpawnLocation, FRotator::ZeroRotator);
 
+	// Vérifier si la nouvelle ligne a été créée
+	if (NewRow)
+	{
+		NewRow->Manager = Manager;  // Assigner le Manager
+	}
+}
